@@ -1,55 +1,28 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Counter } from './features/counter/Counter';
+// import { getCatList } from './services/thecatapi'
 import './App.css';
+// import CatList from './components/CatList';
+import Card from './components/Card'
+import MOCK from './MOCK_BREEDS.json'
 
 function App() {
+  const [catList, setCatList] = useState([])
+
+  // const getData = async () => {
+  //   const { data } = await getCatList()
+
+  //   console.log('prince', data)
+  // }
+
+
+  // useEffect(() => {
+  //   getData()
+  // }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <main>
+      {MOCK.map(cat => <Card {...cat} isSimple={true} />)}
+    </main>
   );
 }
 
