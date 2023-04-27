@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/hearst-challenge/static/css/main.2070e196.css",
-    "main.js": "/hearst-challenge/static/js/main.87cc2acc.js",
+    "main.js": "/hearst-challenge/static/js/main.cd2c821b.js",
     "index.html": "/hearst-challenge/index.html",
     "main.2070e196.css.map": "/hearst-challenge/static/css/main.2070e196.css.map",
-    "main.87cc2acc.js.map": "/hearst-challenge/static/js/main.87cc2acc.js.map"
+    "main.cd2c821b.js.map": "/hearst-challenge/static/js/main.cd2c821b.js.map"
   },
   "entrypoints": [
     "static/css/main.2070e196.css",
-    "static/js/main.87cc2acc.js"
+    "static/js/main.cd2c821b.js"
   ]
 }
