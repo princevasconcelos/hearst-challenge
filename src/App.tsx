@@ -1,29 +1,22 @@
-import { useEffect, useState } from 'react';
-import { Counter } from './features/counter/Counter';
-// import { getCatList } from './services/thecatapi'
-import './App.css';
-// import CatList from './components/CatList';
-import Card from './components/Card'
-import MOCK from './MOCK_BREEDS.json'
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Header from './components/Header'
 
-function App() {
-  const [catList, setCatList] = useState([])
-
-  // const getData = async () => {
-  //   const { data } = await getCatList()
-
-  //   console.log('prince', data)
-  // }
-
-
-  // useEffect(() => {
-  //   getData()
-  // }, [])
-  return (
-    <main>
-      {MOCK.map(cat => <Card {...cat} isSimple={true} />)}
-    </main>
-  );
+interface AppProps {
+    children?: JSX.Element;
 }
+
+const App = ({ children }: AppProps) => {
+    return (
+        <>
+            <Header />
+            <Container>
+                <Box my={8} mt={14}>
+                    {children}
+                </Box>
+            </Container>
+        </>
+    );
+};
 
 export default App;
