@@ -70,11 +70,6 @@ export const uploadSlice = createSlice({
                 const overwriteIndex = state.images.findIndex(
                     f => f.originalImage.id === action.payload.originalImage?.id
                 )
-                console.log('prince', {
-                    a: state.images,
-                    b: action.payload,
-                    overwriteIndex
-                })
                 overwriteIndex === -1
                     ? state.images.push(action.payload as Upload)
                     : state.images.splice(overwriteIndex, 1, action.payload as Upload)

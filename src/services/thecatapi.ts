@@ -2,11 +2,11 @@ import axios from 'axios'
 import { HTTP_GET_METHOD, HTTP_POST_METHOD, HTTP_DELETE_METHOD } from './utils'
 
 const defaultParams = {
-    limit: '50',
+    limit: '52',
     order: 'ASC'
 }
 
-const instance = axios.create({
+export const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
         'x-api-key': process.env.REACT_APP_API_KEY,

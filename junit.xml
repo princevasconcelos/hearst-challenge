@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="17" failures="0" errors="0" time="9.725">
+  <testsuite name="cat reducer" errors="0" failures="0" skipped="0" timestamp="2023-04-27T21:38:53" time="9.063" tests="17">
+    <testcase classname="cat reducer should return the initial state" name="cat reducer should return the initial state" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer should handle update breeds action" name="cat reducer should handle update breeds action" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer createAsyncThunk getBreeds" name="cat reducer createAsyncThunk getBreeds" time="0.041">
+    </testcase>
+    <testcase classname="cat reducer createAsyncThunk getFavourites" name="cat reducer createAsyncThunk getFavourites" time="0.03">
+    </testcase>
+    <testcase classname="cat reducer createAsyncThunk postFavorite" name="cat reducer createAsyncThunk postFavorite" time="0.046">
+    </testcase>
+    <testcase classname="cat reducer createAsyncThunk deleteFavorite" name="cat reducer createAsyncThunk deleteFavorite" time="0.026">
+    </testcase>
+    <testcase classname="cat reducer Breeds should set status to loaing when getBreeds is pending" name="cat reducer Breeds should set status to loaing when getBreeds is pending" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer Breeds should set breeds data when fetchList is fulfilled" name="cat reducer Breeds should set breeds data when fetchList is fulfilled" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Breeds sets fetching false when fetchList is rejected" name="cat reducer Breeds sets fetching false when fetchList is rejected" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Favourites should set favourites data when getFavourites is fulfilled" name="cat reducer Favourites should set favourites data when getFavourites is fulfilled" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer Favourites should push new favourite when postFavorite is fulfilled" name="cat reducer Favourites should push new favourite when postFavorite is fulfilled" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer Favourites should remove favourite when deleteFavorite is fulfilled" name="cat reducer Favourites should remove favourite when deleteFavorite is fulfilled" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer Selectors should selectBreeds" name="cat reducer Selectors should selectBreeds" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Selectors should selectStatus" name="cat reducer Selectors should selectStatus" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer Selectors should selectFavourites" name="cat reducer Selectors should selectFavourites" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Selectors should return false when current time is before expiration time" name="cat reducer Selectors should return false when current time is before expiration time" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer Selectors should return true when current time is after expiration time" name="cat reducer Selectors should return true when current time is after expiration time" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -6,44 +6,44 @@ import { addMinutes, isBefore } from 'date-fns'
 const CACHE_EXPIRATION_MINUTES = 30
 
 interface Weight {
-    imperial: string
+    imperial: string;
 }
 
 export interface Image {
-    url: string
-    id: string
+    url: string;
+    id: string;
 }
 
-interface Favourite {
-    id: number,
-    image_id: string,
-    image: Image
+export interface Favourite {
+    id: number;
+    image_id: string;
+    image: Image;
 }
 
 export interface Cat {
-    image?: Image,
-    name: string,
-    id: string,
-    description: string,
-    weight: Weight,
-    life_span: string | number,
-    origin: string,
-    temperament: string,
-    affection_level: number,
-    child_friendly: number,
-    dog_friendly: number,
-    energy_level: number,
-    adaptability: number,
+    image?: Image;
+    name: string;
+    id: string;
+    description: string;
+    weight: Weight;
+    life_span: string | number;
+    origin: string;
+    temperament: string;
+    affection_level: number;
+    child_friendly: number;
+    dog_friendly: number;
+    energy_level: number;
+    adaptability: number;
 }
 
-interface CatState {
-    breeds: Cat[],
-    cacheExpiresDate: Date,
-    favourites: Favourite[],
-    status: string,
+export interface CatState {
+    breeds: Cat[];
+    cacheExpiresDate: Date;
+    favourites: Favourite[];
+    status: string;
 }
 
-const initialState: CatState = {
+export const initialState: CatState = {
     breeds: [],
     cacheExpiresDate: new Date(),
     favourites: [],
@@ -54,6 +54,7 @@ export const getBreeds = createAsyncThunk(
     'cat/getBreeds',
     async () => {
         const response = await CatService.getBreeds()
+        console.log(response.data)
         return response.data
     }
 )
@@ -70,6 +71,7 @@ export const postFavorite = createAsyncThunk(
     'cat/postFavorite',
     async (imageId: string) => {
         const response = await CatService.postFavorite(imageId)
+        console.log(response)
         return {
             ...response.data,
             image_id: imageId
@@ -132,9 +134,6 @@ export const selectShouldRevalidateData = (state: RootState) => {
     const now = new Date()
     const expiration = addMinutes(formatDate, CACHE_EXPIRATION_MINUTES)
 
-    console.log('prince', {
-        expiration, now
-    })
     return isBefore(expiration, now)
 }
 

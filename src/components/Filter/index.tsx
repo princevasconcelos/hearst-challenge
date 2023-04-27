@@ -18,13 +18,13 @@ const Filter = () => {
     const dispatch = useAppDispatch();
     const filterOptions = useAppSelector(selectFilterOptions)
 
-    const searchByQuery = () => dispatch(updateFilterOptions({ query }))
+    const searchByQuery = () => {
+        dispatch(updateFilterOptions({ query }))
+    }
 
     React.useEffect(() => {
         const debouncedFetch = _.debounce(searchByQuery, DEBOUNCE_DELAY)
-
         debouncedFetch()
-
         return () => debouncedFetch.cancel()
     }, [query])
 
@@ -53,14 +53,15 @@ const Filter = () => {
                 <InputBase
                     sx={{ ml: 1, flex: 1 }}
                     placeholder="Search by name, origin, etc.."
-                    inputProps={{ 'aria-label': 'search google maps' }}
+                    inputProps={{ 'data-testid': 'search-input' }}
                     onChange={handleSearchChange}
+                    value={query}
                 />
                 <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                     <SearchIcon />
                 </IconButton>
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                <FormControlLabel sx={{ ml: '6px' }} control={<Checkbox checked={filterOptions.isFavourite} onChange={handleFilterByFavourites} />} label="Favourites" />
+                <FormControlLabel label="Favourites" sx={{ ml: '6px' }} control={<Checkbox checked={filterOptions.isFavourite} onChange={handleFilterByFavourites} />} />
             </Paper>
         </FormGroup>
     )

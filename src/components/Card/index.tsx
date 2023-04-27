@@ -142,7 +142,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({
                         <b>Life span:</b> {data.life_span} years
                     </Typography>
                     <Typography variant='body2' color='text.secondary'>
-                        <b>Imperial weight:</b> {data.weight.imperial}
+                        <b>Imperial weight:</b> {data.weight?.imperial}
                     </Typography>
                     <Typography variant='body2' color='text.secondary'>
                         <b>Origin:</b> {data.origin}
@@ -159,7 +159,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({
                         <b>Life span:</b> {data.life_span} years
                     </Typography>
                     <Typography paragraph variant='body1' color='text.secondary'>
-                        <b>Imperial weight:</b> {data.weight.imperial} pounds
+                        <b>Imperial weight:</b> {data.weight?.imperial} pounds
                     </Typography>
                     <Typography paragraph variant='body1' color='text.secondary'>
                         <b>Origin:</b> {data.origin}

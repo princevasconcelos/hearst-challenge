@@ -17,7 +17,6 @@ const Sort = () => {
             sortBy: value,
             order
         }
-
         dispatch(updateSortOptions(options))
     }
 
@@ -26,7 +25,6 @@ const Sort = () => {
             sortBy,
             order: isDescending ? 'DESC' : 'ASC'
         }
-
         dispatch(updateSortOptions(options))
     }
 
@@ -37,14 +35,14 @@ const Sort = () => {
                 sx={{ minWidth: '180px' }}
                 labelId="sort-by"
                 value={sortBy}
-                label="Age"
+                inputProps={{ 'data-testid': 'sort-select' }}
                 onChange={event => handleSortChange(event.target.value)}
             >
-                {options.map(option => <MenuItem value={option}>{option}</MenuItem>)}
+                {options.map(option => <MenuItem key={option} value={option}>{option}</MenuItem>)}
             </Select>
-            <FormControlLabel sx={{ ml: '6px' }} control={
+            <FormControlLabel label="Descending" sx={{ ml: '6px' }} control={
                 <Checkbox checked={order === 'DESC'} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleSelectChange(event.target.checked)} />
-            } label="Descending" />
+            } />
         </FormControl>
     )
 }

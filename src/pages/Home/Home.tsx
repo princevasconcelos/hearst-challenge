@@ -79,7 +79,6 @@ function App() {
     }, [breeds, favourites, sortOptions, filterOptions]) as Cat[]
 
     useEffect(() => {
-        console.log('prince shouldRevalidateData', shouldRevalidateData)
         if (breeds.length === 0 || shouldRevalidateData) {
             dispatch(getBreeds())
             dispatch(getFavourites())
