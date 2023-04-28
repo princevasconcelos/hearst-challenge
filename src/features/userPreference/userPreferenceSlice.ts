@@ -18,7 +18,7 @@ interface UserPreferenceState {
     filterOptions: Filter
 }
 
-const initialState: UserPreferenceState = {
+export const initialState: UserPreferenceState = {
     sortOptions: {
         options: ['Name', 'Imperial Weight', 'Life Span', 'Origin'],
         sortBy: 'Name',

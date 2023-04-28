@@ -1,12 +1,10 @@
-import reducer, { updateBreeds, getBreeds, selectShouldRevalidateData, selectFavourites, selectStatus, selectBreeds, deleteFavorite, postFavorite, getFavourites, initialState, CatState } from './catSlice'
+import reducer, { updateBreeds, getBreeds, selectShouldRevalidateData, selectFavourites, selectStatus, selectBreeds, deleteFavorite, postFavorite, getFavourites, initialState } from './catSlice'
 import MOCK_BREEDS from '../../__tests__/MOCK_BREEDS.json'
 import MOCK_FAVOURITE_LIST from '../../__tests__/MOCK_FAVOURITE_LIST.json'
 import MOCK_FAVOURITE_RESPONSE from '../../__tests__/MOCK_FAVOURITE_RESPONSE.json'
 import { setupStore } from '../../app/store'
 import { cleanup } from "@testing-library/react";
 import * as thecatapi from '../../services/thecatapi'
-
-jest.mock("axios");
 
 describe('cat reducer', () => {
     const today = new Date('2023-12-31T03:00:00.000Z')

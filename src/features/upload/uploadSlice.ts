@@ -16,7 +16,7 @@ interface CatState {
     error: string
 }
 
-const initialState: CatState = {
+export const initialState: CatState = {
     images: [],
     status: 'idle',
     error: ''
@@ -77,7 +77,6 @@ export const uploadSlice = createSlice({
             .addCase(postImage.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = `${action.payload}`
-                // state.images = []
             })
             .addCase(deleteImage.pending, (state) => {
                 state.status = 'loading'
@@ -88,9 +87,6 @@ export const uploadSlice = createSlice({
                 state.error = ''
                 state.images = state.images.filter(f => f.id !== action.payload)
             })
-            // .addCase(deleteImage.rejected, (state, action) => {
-            //     state.images = []
-            // })
     }
 })
 

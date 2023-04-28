@@ -2,7 +2,7 @@ import axios from 'axios'
 import { HTTP_GET_METHOD, HTTP_POST_METHOD, HTTP_DELETE_METHOD } from './utils'
 
 const defaultParams = {
-    limit: '52',
+    limit: '100',
     order: 'ASC'
 }
 

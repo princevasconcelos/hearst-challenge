@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     path: "/:id",
     element: <App><Details /></App>,
   },
-]);
+], { basename: '/hearst-challenge'});
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
