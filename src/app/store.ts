@@ -42,7 +42,9 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   })
 }
 
-export const persistor = persistStore(setupStore())
+export const store = setupStore()
+
+export const persistor = persistStore(store)
 
 export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = AppStore['dispatch']
