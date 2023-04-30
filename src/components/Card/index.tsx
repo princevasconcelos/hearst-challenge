@@ -165,6 +165,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({
               disabled={uploadStatus === 'loading'}
               type="file"
               name="file"
+              data-testid="input-image"
               onChange={handleSelectNewImage}
             />
             <Button

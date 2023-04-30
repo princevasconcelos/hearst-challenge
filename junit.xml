@@ -1,91 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="53" failures="0" errors="0" time="14.488">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:52:20" time="10.336" tests="1">
-    <testcase classname=" Should handle sort options change for type and order" name=" Should handle sort options change for type and order" time="0.363">
+<testsuites name="jest tests" tests="56" failures="0" errors="0" time="21.251">
+  <testsuite name="upload reducer" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:00" time="11.32" tests="14">
+    <testcase classname="upload reducer should return the initial state" name="upload reducer should return the initial state" time="0.003">
     </testcase>
-  </testsuite>
-  <testsuite name="Header" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:52:20" time="10.551" tests="2">
-    <testcase classname="Header should not render filters on MOBILE" name="Header should not render filters on MOBILE" time="0.211">
+    <testcase classname="upload reducer should handle clean errors action" name="upload reducer should handle clean errors action" time="0.002">
     </testcase>
-    <testcase classname="Header should render filters on DESKTOP" name="Header should render filters on DESKTOP" time="0.439">
+    <testcase classname="upload reducer createAsyncThunk postImage" name="upload reducer createAsyncThunk postImage" time="0.016">
     </testcase>
-  </testsuite>
-  <testsuite name="cat reducer" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:52:30" time="0.329" tests="17">
-    <testcase classname="cat reducer should return the initial state" name="cat reducer should return the initial state" time="0.001">
+    <testcase classname="upload reducer createAsyncThunk postImage rejected" name="upload reducer createAsyncThunk postImage rejected" time="0.007">
     </testcase>
-    <testcase classname="cat reducer should handle update breeds action" name="cat reducer should handle update breeds action" time="0.002">
+    <testcase classname="upload reducer createAsyncThunk deleteImage" name="upload reducer createAsyncThunk deleteImage" time="0.006">
     </testcase>
-    <testcase classname="cat reducer createAsyncThunk getBreeds" name="cat reducer createAsyncThunk getBreeds" time="0.008">
-    </testcase>
-    <testcase classname="cat reducer createAsyncThunk getFavourites" name="cat reducer createAsyncThunk getFavourites" time="0.003">
-    </testcase>
-    <testcase classname="cat reducer createAsyncThunk postFavorite" name="cat reducer createAsyncThunk postFavorite" time="0.004">
-    </testcase>
-    <testcase classname="cat reducer createAsyncThunk deleteFavorite" name="cat reducer createAsyncThunk deleteFavorite" time="0.004">
-    </testcase>
-    <testcase classname="cat reducer Breeds should set status to loaing when getBreeds is pending" name="cat reducer Breeds should set status to loaing when getBreeds is pending" time="0">
-    </testcase>
-    <testcase classname="cat reducer Breeds should set breeds data when fetchList is fulfilled" name="cat reducer Breeds should set breeds data when fetchList is fulfilled" time="0.001">
-    </testcase>
-    <testcase classname="cat reducer Breeds sets fetching false when fetchList is rejected" name="cat reducer Breeds sets fetching false when fetchList is rejected" time="0.001">
-    </testcase>
-    <testcase classname="cat reducer Favourites should set favourites data when getFavourites is fulfilled" name="cat reducer Favourites should set favourites data when getFavourites is fulfilled" time="0">
-    </testcase>
-    <testcase classname="cat reducer Favourites should push new favourite when postFavorite is fulfilled" name="cat reducer Favourites should push new favourite when postFavorite is fulfilled" time="0.001">
-    </testcase>
-    <testcase classname="cat reducer Favourites should remove favourite when deleteFavorite is fulfilled" name="cat reducer Favourites should remove favourite when deleteFavorite is fulfilled" time="0.001">
-    </testcase>
-    <testcase classname="cat reducer Selectors should selectBreeds" name="cat reducer Selectors should selectBreeds" time="0">
-    </testcase>
-    <testcase classname="cat reducer Selectors should selectStatus" name="cat reducer Selectors should selectStatus" time="0.001">
-    </testcase>
-    <testcase classname="cat reducer Selectors should selectFavourites" name="cat reducer Selectors should selectFavourites" time="0.001">
-    </testcase>
-    <testcase classname="cat reducer Selectors should return false when current time is before expiration time" name="cat reducer Selectors should return false when current time is before expiration time" time="0.002">
-    </testcase>
-    <testcase classname="cat reducer Selectors should return true when current time is after expiration time" name="cat reducer Selectors should return true when current time is after expiration time" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:52:30" time="0.675" tests="1">
-    <testcase classname=" should handle filter options selection" name=" should handle filter options selection" time="0.162">
-    </testcase>
-  </testsuite>
-  <testsuite name="Home" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:52:20" time="11.249" tests="11">
-    <testcase classname="Home should render error message when status is error" name="Home should render error message when status is error" time="0.141">
-    </testcase>
-    <testcase classname="Home should render a list of skeletons when status is loading" name="Home should render a list of skeletons when status is loading" time="0.042">
-    </testcase>
-    <testcase classname="Home should render filter list and sort on MOBILE" name="Home should render filter list and sort on MOBILE" time="0.324">
-    </testcase>
-    <testcase classname="Home should render a list of cards" name="Home should render a list of cards" time="0.184">
-    </testcase>
-    <testcase classname="Home should redirect to details page when clicks on a card" name="Home should redirect to details page when clicks on a card" time="0.053">
-    </testcase>
-    <testcase classname="Home should sort and filter data by NAME" name="Home should sort and filter data by NAME" time="0.053">
-    </testcase>
-    <testcase classname="Home should sort and filter data by ORIGIN" name="Home should sort and filter data by ORIGIN" time="0.045">
-    </testcase>
-    <testcase classname="Home should sort and filter data by LIFE SPAN" name="Home should sort and filter data by LIFE SPAN" time="0.032">
-    </testcase>
-    <testcase classname="Home should sort and filter data by IMPERIAL WEIGHT" name="Home should sort and filter data by IMPERIAL WEIGHT" time="0.069">
-    </testcase>
-    <testcase classname="Home should filter all favorites" name="Home should filter all favorites" time="0.032">
-    </testcase>
-    <testcase classname="Home should fetch cat and favorite data" name="Home should fetch cat and favorite data" time="0.195">
-    </testcase>
-  </testsuite>
-  <testsuite name="upload reducer" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:52:31" time="0.328" tests="14">
-    <testcase classname="upload reducer should return the initial state" name="upload reducer should return the initial state" time="0.001">
-    </testcase>
-    <testcase classname="upload reducer should handle clean errors action" name="upload reducer should handle clean errors action" time="0.007">
-    </testcase>
-    <testcase classname="upload reducer createAsyncThunk postImage" name="upload reducer createAsyncThunk postImage" time="0.006">
-    </testcase>
-    <testcase classname="upload reducer createAsyncThunk postImage rejected" name="upload reducer createAsyncThunk postImage rejected" time="0.003">
-    </testcase>
-    <testcase classname="upload reducer createAsyncThunk deleteImage" name="upload reducer createAsyncThunk deleteImage" time="0.003">
-    </testcase>
-    <testcase classname="upload reducer Image should set status to loaing when postImage is pending" name="upload reducer Image should set status to loaing when postImage is pending" time="0">
+    <testcase classname="upload reducer Image should set status to loaing when postImage is pending" name="upload reducer Image should set status to loaing when postImage is pending" time="0.001">
     </testcase>
     <testcase classname="upload reducer Image should set images data when postImage is fulfilled" name="upload reducer Image should set images data when postImage is fulfilled" time="0.001">
     </testcase>
@@ -101,25 +27,107 @@
     </testcase>
     <testcase classname="upload reducer Selectors should selectUploadedStatus" name="upload reducer Selectors should selectUploadedStatus" time="0.001">
     </testcase>
-    <testcase classname="upload reducer Selectors should selectUploadedError" name="upload reducer Selectors should selectUploadedError" time="0">
+    <testcase classname="upload reducer Selectors should selectUploadedError" name="upload reducer Selectors should selectUploadedError" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="userPreferenceSlice reducer" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:52:31" time="0.302" tests="6">
+  <testsuite name="cat reducer" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:00" time="11.69" tests="17">
+    <testcase classname="cat reducer should return the initial state" name="cat reducer should return the initial state" time="0.004">
+    </testcase>
+    <testcase classname="cat reducer should handle update breeds action" name="cat reducer should handle update breeds action" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer createAsyncThunk getBreeds" name="cat reducer createAsyncThunk getBreeds" time="0.019">
+    </testcase>
+    <testcase classname="cat reducer createAsyncThunk getFavourites" name="cat reducer createAsyncThunk getFavourites" time="0.006">
+    </testcase>
+    <testcase classname="cat reducer createAsyncThunk postFavorite" name="cat reducer createAsyncThunk postFavorite" time="0.008">
+    </testcase>
+    <testcase classname="cat reducer createAsyncThunk deleteFavorite" name="cat reducer createAsyncThunk deleteFavorite" time="0.008">
+    </testcase>
+    <testcase classname="cat reducer Breeds should set status to loaing when getBreeds is pending" name="cat reducer Breeds should set status to loaing when getBreeds is pending" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Breeds should set breeds data when fetchList is fulfilled" name="cat reducer Breeds should set breeds data when fetchList is fulfilled" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Breeds sets fetching false when fetchList is rejected" name="cat reducer Breeds sets fetching false when fetchList is rejected" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Favourites should set favourites data when getFavourites is fulfilled" name="cat reducer Favourites should set favourites data when getFavourites is fulfilled" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Favourites should push new favourite when postFavorite is fulfilled" name="cat reducer Favourites should push new favourite when postFavorite is fulfilled" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Favourites should remove favourite when deleteFavorite is fulfilled" name="cat reducer Favourites should remove favourite when deleteFavorite is fulfilled" time="0.002">
+    </testcase>
+    <testcase classname="cat reducer Selectors should selectBreeds" name="cat reducer Selectors should selectBreeds" time="0.012">
+    </testcase>
+    <testcase classname="cat reducer Selectors should selectStatus" name="cat reducer Selectors should selectStatus" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Selectors should selectFavourites" name="cat reducer Selectors should selectFavourites" time="0.001">
+    </testcase>
+    <testcase classname="cat reducer Selectors should return false when current time is before expiration time" name="cat reducer Selectors should return false when current time is before expiration time" time="0.006">
+    </testcase>
+    <testcase classname="cat reducer Selectors should return true when current time is after expiration time" name="cat reducer Selectors should return true when current time is after expiration time" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="userPreferenceSlice reducer" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:12" time="0.483" tests="6">
     <testcase classname="userPreferenceSlice reducer should return the initial state" name="userPreferenceSlice reducer should return the initial state" time="0.001">
     </testcase>
     <testcase classname="userPreferenceSlice reducer should handle updateSortOptions action" name="userPreferenceSlice reducer should handle updateSortOptions action" time="0.002">
     </testcase>
-    <testcase classname="userPreferenceSlice reducer should handle updateFilterOptions action" name="userPreferenceSlice reducer should handle updateFilterOptions action" time="0">
+    <testcase classname="userPreferenceSlice reducer should handle updateFilterOptions action" name="userPreferenceSlice reducer should handle updateFilterOptions action" time="0.001">
     </testcase>
-    <testcase classname="userPreferenceSlice reducer should handle removeFilterOption action" name="userPreferenceSlice reducer should handle removeFilterOption action" time="0.001">
+    <testcase classname="userPreferenceSlice reducer should handle removeFilterOption action" name="userPreferenceSlice reducer should handle removeFilterOption action" time="0.003">
     </testcase>
-    <testcase classname="userPreferenceSlice reducer Selectors should selectSortOptions" name="userPreferenceSlice reducer Selectors should selectSortOptions" time="0">
+    <testcase classname="userPreferenceSlice reducer Selectors should selectSortOptions" name="userPreferenceSlice reducer Selectors should selectSortOptions" time="0.001">
     </testcase>
     <testcase classname="userPreferenceSlice reducer Selectors should selectFilterOptions" name="userPreferenceSlice reducer Selectors should selectFilterOptions" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Details" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:52:20" time="13.554" tests="1">
-    <testcase classname="Details should render card data with details" name="Details should render card data with details" time="0.541">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:00" time="12.633" tests="1">
+    <testcase classname=" should handle filter options selection" name=" should handle filter options selection" time="0.25">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:00" time="12.773" tests="1">
+    <testcase classname=" Should handle sort options change for type and order" name=" Should handle sort options change for type and order" time="0.422">
+    </testcase>
+  </testsuite>
+  <testsuite name="Header" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:12" time="1.917" tests="2">
+    <testcase classname="Header should not render filters on MOBILE" name="Header should not render filters on MOBILE" time="0.158">
+    </testcase>
+    <testcase classname="Header should render filters on DESKTOP" name="Header should render filters on DESKTOP" time="0.389">
+    </testcase>
+  </testsuite>
+  <testsuite name="Card" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:00" time="19.257" tests="3">
+    <testcase classname="Card should handle delete favorite" name="Card should handle delete favorite" time="0.122">
+    </testcase>
+    <testcase classname="Card should handle favorite item" name="Card should handle favorite item" time="0.027">
+    </testcase>
+    <testcase classname="Card should clean erros on mount" name="Card should clean erros on mount" time="0.022">
+    </testcase>
+  </testsuite>
+  <testsuite name="Details" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:00" time="19.473" tests="1">
+    <testcase classname="Details should render card data with details" name="Details should render card data with details" time="0.588">
+    </testcase>
+  </testsuite>
+  <testsuite name="Home" errors="0" failures="0" skipped="0" timestamp="2023-04-30T17:09:00" time="20.223" tests="11">
+    <testcase classname="Home should render error message when status is error" name="Home should render error message when status is error" time="0.067">
+    </testcase>
+    <testcase classname="Home should render a list of skeletons when status is loading" name="Home should render a list of skeletons when status is loading" time="0.021">
+    </testcase>
+    <testcase classname="Home should render filter list and sort on MOBILE" name="Home should render filter list and sort on MOBILE" time="0.189">
+    </testcase>
+    <testcase classname="Home should render a list of cards" name="Home should render a list of cards" time="0.108">
+    </testcase>
+    <testcase classname="Home should redirect to details page when clicks on a card" name="Home should redirect to details page when clicks on a card" time="0.027">
+    </testcase>
+    <testcase classname="Home should sort and filter data by NAME" name="Home should sort and filter data by NAME" time="0.027">
+    </testcase>
+    <testcase classname="Home should sort and filter data by ORIGIN" name="Home should sort and filter data by ORIGIN" time="0.024">
+    </testcase>
+    <testcase classname="Home should sort and filter data by LIFE SPAN" name="Home should sort and filter data by LIFE SPAN" time="0.024">
+    </testcase>
+    <testcase classname="Home should sort and filter data by IMPERIAL WEIGHT" name="Home should sort and filter data by IMPERIAL WEIGHT" time="0.044">
+    </testcase>
+    <testcase classname="Home should filter all favorites" name="Home should filter all favorites" time="0.027">
+    </testcase>
+    <testcase classname="Home should fetch cat and favorite data" name="Home should fetch cat and favorite data" time="0.108">
     </testcase>
   </testsuite>
 </testsuites>
