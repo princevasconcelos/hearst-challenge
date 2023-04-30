@@ -1,8 +1,26 @@
 # The Cat App
 
-Challenge application using React + Cat API for Hearst Communications
+## Live Url: https://princevasconcelos.github.io/hearst-challenge
 
-Live Url: https://princevasconcelos.github.io/hearst-challenge
+Challenge application using React + Cat API for Hearst Communications
+### Stack
+
+1. React
+2. Redux Toolkit
+3. Redux Persist
+4. Material-UI
+5. Typescript
+6. Lodash
+7. Date-fns
+8. Jest + RTL
+9. Eslint + Prettier + Editorconfig
+
+### Scripts
+
+- Run local at port 3000: `npm run start`
+- Run tests with jest and coverage: `npm run test`
+- Deploy on Github Pages: `npm run deploy`
+- Run linting: `npm run lint:fix`
 
 ### Functionalities
 
@@ -14,16 +32,6 @@ Live Url: https://princevasconcelos.github.io/hearst-challenge
 6. Lazy load images
 7. Persist data after reloads
 
-### Stack
-
-1. React
-2. Redux Toolkit
-3. Redux Persist
-4. Material-UI
-5. Typescript
-6. Lodash
-7. Date-fns
-8. Jest + RTL
 
 ## Requirements
 
@@ -90,56 +98,3 @@ useEffect(() => {
     }
 }, [])
 ```
-
-- use redux to store
-    - list of cats
-    - detail of a cat
-    - filters applied
-    - sorting
-    - favorite list
-    - users custom images
-- lazy load all images
-- unit tests
-    - 100% for reducers
-    - some for action creators
-    - 80% outside reducers
-- public git repository
-- readme how to build/run/test the project
-- live url
-
-Home Page
-    - get all cat breeds
-        - at least once every 30 minutes
-    - list of cat cards (flex box)
-        - image
-        - name
-        - lifespan
-        - imperial weight
-        - origin
-        - favorite button overlay
-        - onClick -> details page
-    - sorting (default=name) (default=asc)
-        - name
-        - imperial weight
-        - lifespan
-        - origin
-    - filter (multiple filters at once)
-        - name
-        - lifespan
-        - favorited
-        - imperial weight
-        - origin
-    - persist favorite cats across page reloads
-
-Details Page
-    - detail component
-        - all information on previous page
-        - temperament
-        - adaptability
-        - affection level
-    - add/remove to favorite list
-    - replace image with a custom (upload an image)
-        - use local storage or index DB
-        - add/remove custom image (revert to API image)
-        - update a custom with another custom (overwrite)
-        - should be displayed the custom image on Home page
