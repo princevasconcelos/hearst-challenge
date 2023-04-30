@@ -98,3 +98,7 @@ useEffect(() => {
     }
 }, [])
 ```
+
+## Coverage
+
+![Alt text](./public/coverage.png?raw=true "Coverage")
