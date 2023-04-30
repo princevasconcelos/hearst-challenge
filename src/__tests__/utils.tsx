@@ -4,7 +4,7 @@ import type { RenderOptions } from '@testing-library/react'
 import type { PreloadedState } from '@reduxjs/toolkit'
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux'
-
+import {BrowserRouter, MemoryRouter} from 'react-router-dom'
 import { setupStore, persistor } from '../app/store'
 import type { AppStore, RootState } from '../app/store'
 
@@ -25,11 +25,13 @@ export function renderWithProviders(
 ) {
     function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
         return (
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
-                    {children}
-                </PersistGate>
-            </Provider>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        {children}
+                    </PersistGate>
+                </Provider>
+            </BrowserRouter>
         )
     }
     return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }

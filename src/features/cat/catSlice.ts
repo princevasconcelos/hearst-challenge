@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as CatService from '../../services/thecatapi'
 import { addMinutes, isBefore } from 'date-fns'
 
-const CACHE_EXPIRATION_MINUTES = 30
+const CACHE_EXPIRATION_MINUTES = 0
 
 interface Weight {
     imperial: string;

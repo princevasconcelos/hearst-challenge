@@ -13,6 +13,7 @@ import FilterList from '../../components/Filter';
 import Sort from '../../components/Sort';
 
 function App() {
+    const DEBOUNCE_DELAY = 500
     const dispatch = useAppDispatch();
     const breeds = useAppSelector(selectBreeds)
     const favourites = useAppSelector(selectFavourites)
@@ -22,7 +23,7 @@ function App() {
     const filterOptions = useAppSelector(selectFilterOptions)
     const isMobile = useMediaQuery('(max-width:600px)');
 
-    const formatValueForComparison = (value: string) => Number(value.split(' ').at(0))
+    const formatValueForComparison = (value: string) => Number(value.split(' ')[0])
 
     const addSortFilterValues = (data: Cat[]) => data.map(cat => {
         const favourite = favourites.find(fav => fav.image_id === cat.image?.id)
@@ -69,6 +70,7 @@ function App() {
             filterWithValues(filterOptions)
         )
 
+
         const sorted = _.orderBy(
             filtered,
             [sortOptions.sortBy.toLowerCase().replace(/\s/g, '_')],
@@ -77,12 +79,19 @@ function App() {
 
         return sorted
     }, [breeds, favourites, sortOptions, filterOptions]) as Cat[]
+    
+    const fetchData = () => {
+        dispatch(getBreeds())
+        dispatch(getFavourites())
+    }
 
     useEffect(() => {
+        const debouncedFetch = _.debounce(fetchData, DEBOUNCE_DELAY)
         if (breeds.length === 0 || shouldRevalidateData) {
-            dispatch(getBreeds())
-            dispatch(getFavourites())
+            debouncedFetch()
         }
+
+        return () => debouncedFetch.cancel()
     }, [])
 
     const navigate = useNavigate();
@@ -109,7 +118,7 @@ function App() {
             cols={4}
             >
                 {status === 'loading' ?
-                    Array.from({ length: 20 }).map(() => <Skeleton variant="rectangular" width={270} height={360} />):
+                    Array.from({ length: 20 }).map((_, index) => <Skeleton key={index} data-testid="skeleton" variant="rectangular" width={270} height={360} />):
                     catData.map(cat => <Card key={cat.id} {...cat} expanded={false} handleCardClick={onCardClick} />) 
                 }
         </ImageList>

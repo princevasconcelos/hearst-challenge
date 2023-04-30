@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="6.588">
-  <testsuite name="userPreferenceSlice reducer" errors="0" failures="0" skipped="0" timestamp="2023-04-28T15:12:43" time="6.199" tests="6">
-    <testcase classname="userPreferenceSlice reducer should return the initial state" name="userPreferenceSlice reducer should return the initial state" time="0.002">
+<testsuites name="jest tests" tests="11" failures="0" errors="0" time="5.712">
+  <testsuite name="Home" errors="0" failures="0" skipped="0" timestamp="2023-04-30T02:15:06" time="5.27" tests="11">
+    <testcase classname="Home should render error message when status is error" name="Home should render error message when status is error" time="0.08">
     </testcase>
-    <testcase classname="userPreferenceSlice reducer should handle updateSortOptions action" name="userPreferenceSlice reducer should handle updateSortOptions action" time="0.001">
+    <testcase classname="Home should render a list of skeletons when status is loading" name="Home should render a list of skeletons when status is loading" time="0.022">
     </testcase>
-    <testcase classname="userPreferenceSlice reducer should handle updateFilterOptions action" name="userPreferenceSlice reducer should handle updateFilterOptions action" time="0.001">
+    <testcase classname="Home should render filter list and sort on MOBILE" name="Home should render filter list and sort on MOBILE" time="0.192">
     </testcase>
-    <testcase classname="userPreferenceSlice reducer should handle removeFilterOption action" name="userPreferenceSlice reducer should handle removeFilterOption action" time="0.001">
+    <testcase classname="Home should render a list of cards" name="Home should render a list of cards" time="0.107">
     </testcase>
-    <testcase classname="userPreferenceSlice reducer Selectors should selectSortOptions" name="userPreferenceSlice reducer Selectors should selectSortOptions" time="0">
+    <testcase classname="Home should redirect to details page when clicks on a card" name="Home should redirect to details page when clicks on a card" time="0.033">
     </testcase>
-    <testcase classname="userPreferenceSlice reducer Selectors should selectFilterOptions" name="userPreferenceSlice reducer Selectors should selectFilterOptions" time="0">
+    <testcase classname="Home should sort and filter data by NAME" name="Home should sort and filter data by NAME" time="0.03">
+    </testcase>
+    <testcase classname="Home should sort and filter data by ORIGIN" name="Home should sort and filter data by ORIGIN" time="0.03">
+    </testcase>
+    <testcase classname="Home should sort and filter data by LIFE SPAN" name="Home should sort and filter data by LIFE SPAN" time="0.026">
+    </testcase>
+    <testcase classname="Home should sort and filter data by IMPERIAL WEIGHT" name="Home should sort and filter data by IMPERIAL WEIGHT" time="0.051">
+    </testcase>
+    <testcase classname="Home should filter all favorites" name="Home should filter all favorites" time="0.027">
+    </testcase>
+    <testcase classname="Home should fetch cat and favorite data" name="Home should fetch cat and favorite data" time="0.209">
     </testcase>
   </testsuite>
 </testsuites>

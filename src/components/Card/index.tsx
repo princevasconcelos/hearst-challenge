@@ -47,6 +47,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({
     const hasRequiredProps = Boolean(data.image)
 
     React.useEffect(() => {
+        if (!uploadError) return
         dispatch(cleanErrors())
     }, [])
 
@@ -94,6 +95,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({
                 height={expanded ? '500' : '200'}
                 placeholder={<Skeleton variant="rectangular" width={270} height={360} />}
                 loading="lazy"
+                data-testid="lazyloadimage"
                 style={{ objectFit: expanded ? 'contain' : 'cover' }}
             />
                 {hasRequiredProps && <Stack direction="row" sx={{ position: 'absolute', right: 8, top: 4 }}>

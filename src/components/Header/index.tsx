@@ -13,6 +13,11 @@ const Header = () => {
     const isHomePage = useMatch('/')
     const onLogoClick = () => navigate('/');
 
+    console.log('prince', {
+        isDesktop,
+        isHomePage
+    })
+
     return (
         <AppBar color='inherit' variant='outlined' position='fixed' sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: isDesktop ? '100px' : '90px', px: 4 }}>
             <Box sx={{ display: 'flex', whiteSpace: 'nowrap', cursor: 'pointer', }} onClick={onLogoClick}>

@@ -23,6 +23,9 @@ module.exports = {
         }
     },
     collectCoverageFrom: [
-        '<rootDir>/src/**/*.{ts,tsx}'
+        'src/components/**',
+        'src/features/**',
+        'src/pages/**',
+        'src/services/**',
     ],
 };

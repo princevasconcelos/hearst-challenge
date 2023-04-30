@@ -1,8 +1,15 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import { renderWithProviders } from '../../__tests__/utils'
+import * as Hooks from '../../app/hooks';
+import { updateSortOptions } from '../../features/userPreference/userPreferenceSlice'
+
 import Sort from './';
 
-test('Should render Sort component and handle change sort type and sort order', async () => {
+test('Should handle sort options change for type and order', async () => {
+  const dispatch = jest.fn()
+  const hooksSpy = jest.spyOn(Hooks, 'useAppDispatch')
+    .mockImplementation(() => (args: any) => dispatch(args))
+  
   renderWithProviders(<Sort />)
 
   expect(screen.getByText('Name')).toBeVisible()
@@ -11,5 +18,21 @@ test('Should render Sort component and handle change sort type and sort order', 
   fireEvent.click(screen.getByText(/descending/i))
   fireEvent.click(screen.getByText(/descending/i))
 
-  await waitFor(() => expect(screen.getByText('Imperial Weight')).toBeVisible())
+  expect(dispatch).toBeCalledTimes(3)
+  expect(dispatch).toHaveBeenCalledWith({
+    payload: {
+      order: "ASC",
+      sortBy: "Imperial Weight"
+    },
+    type: updateSortOptions.type
+  })
+  expect(dispatch).toHaveBeenCalledWith({
+    payload: {
+      order: "DESC",
+      sortBy: "Name"
+    },
+    type: updateSortOptions.type
+  })
+
+  hooksSpy.mockRestore()
 })
