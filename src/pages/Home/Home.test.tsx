@@ -1,69 +1,71 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import { renderWithProviders } from '../../__tests__/utils'
-import MOCK_BREEDS from '../../__tests__/MOCK_BREEDS.json'
-import MOCK_FAVOURITE_LIST from '../../__tests__/MOCK_FAVOURITE_LIST.json'
-import Home from './Home'
-import * as thecatapi from '../../services/thecatapi'
-import { store } from '../../app/store'
+import { renderWithProviders } from '../../__tests__/utils';
+import MOCK_BREEDS from '../../__tests__/MOCK_BREEDS.json';
+import MOCK_FAVOURITE_LIST from '../../__tests__/MOCK_FAVOURITE_LIST.json';
+import Home from './Home';
+import * as thecatapi from '../../services/thecatapi';
+import { store } from '../../app/store';
 
 describe('Home', () => {
-  let initialState = store.getState()
-  const breeds = MOCK_BREEDS.slice(0, 1)
-  const favourites = MOCK_FAVOURITE_LIST.slice(0, 1)
+  const initialState = store.getState();
+  const breeds = MOCK_BREEDS.slice(0, 1);
+  const favourites = MOCK_FAVOURITE_LIST.slice(0, 1);
 
   test('should render error message when status is error', async () => {
     const preloadedState = {
       ...initialState,
       cat: {
         ...initialState.cat,
-        status: 'error'
-      }
-    }
+        status: 'error',
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    expect(screen.getByText('Something went wrong.. :(')).toBeVisible()
-  })
+    expect(screen.getByText('Something went wrong.. :(')).toBeVisible();
+  });
 
   test('should render a list of skeletons when status is loading', async () => {
     const preloadedState = {
       ...initialState,
       cat: {
         ...initialState.cat,
-        status: 'loading'
-      }
-    }
+        status: 'loading',
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    expect(screen.getAllByTestId('skeleton').length).toBe(20)
-  })
+    expect(screen.getAllByTestId('skeleton').length).toBe(20);
+  });
 
   test('should render filter list and sort on MOBILE', async () => {
-    const originalMatchMedia = window.matchMedia
+    const originalMatchMedia = window.matchMedia;
     const preloadedState = {
       ...initialState,
       cat: {
         ...initialState.cat,
-        status: 'loading'
-      }
-    }
+        status: 'loading',
+      },
+    };
 
-    window.matchMedia = jest.fn().mockImplementation(query => ({
+    window.matchMedia = jest.fn().mockImplementation((query) => ({
       matches: true,
       media: '',
       onchange: null,
       addListener: jest.fn(),
-      removeListener: jest.fn()
+      removeListener: jest.fn(),
     }));
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    expect(screen.getByText('Sort by:')).toBeVisible()
-    expect(screen.getByPlaceholderText('Search by name, origin, etc..')).toBeVisible()
+    expect(screen.getByText('Sort by:')).toBeVisible();
+    expect(
+      screen.getByPlaceholderText('Search by name, origin, etc..')
+    ).toBeVisible();
 
-    window.matchMedia = originalMatchMedia
-  })
+    window.matchMedia = originalMatchMedia;
+  });
 
   test('should render a list of cards', async () => {
     const preloadedState = {
@@ -71,19 +73,26 @@ describe('Home', () => {
       cat: {
         ...initialState.cat,
         breeds,
-        favourites
-      }
-    }
+        favourites,
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    expect(screen.getByText('Abyssinian')).toBeVisible()
-    expect(screen.getByText('The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.')).toBeVisible()
-    expect(screen.getByText('14 years')).toBeVisible()
-    expect(screen.getByText('7 - 10')).toBeVisible()
-    expect(screen.getByText('Egypt')).toBeVisible()
-    expect(screen.getByTestId('lazyloadimage')).toHaveAttribute('src', breeds[0].image.url)
-  })
+    expect(screen.getByText('Abyssinian')).toBeVisible();
+    expect(
+      screen.getByText(
+        'The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.'
+      )
+    ).toBeVisible();
+    expect(screen.getByText('14 years')).toBeVisible();
+    expect(screen.getByText('7 - 10')).toBeVisible();
+    expect(screen.getByText('Egypt')).toBeVisible();
+    expect(screen.getByTestId('lazyloadimage')).toHaveAttribute(
+      'src',
+      breeds[0].image.url
+    );
+  });
 
   test('should redirect to details page when clicks on a card', async () => {
     const preloadedState = {
@@ -91,15 +100,15 @@ describe('Home', () => {
       cat: {
         ...initialState.cat,
         breeds,
-      }
-    }
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    fireEvent.click(screen.getByTestId('lazyloadimage'))
+    fireEvent.click(screen.getByTestId('lazyloadimage'));
 
-    expect(window.location.href).toBe('http://localhost/abys')
-  })
+    expect(window.location.href).toBe('http://localhost/abys');
+  });
 
   test('should sort and filter data by NAME', async () => {
     const preloadedState = {
@@ -107,18 +116,18 @@ describe('Home', () => {
       cat: {
         ...initialState.cat,
         breeds: MOCK_BREEDS,
-        favourites
+        favourites,
       },
       userPreference: {
         ...initialState.userPreference,
-        filterOptions: { isFavourite: true, query: 'Aby' }
-      }
-    }
+        filterOptions: { isFavourite: true, query: 'Aby' },
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    expect(screen.getByText('Abyssinian')).toBeVisible()
-  })
+    expect(screen.getByText('Abyssinian')).toBeVisible();
+  });
 
   test('should sort and filter data by ORIGIN', async () => {
     const preloadedState = {
@@ -129,14 +138,14 @@ describe('Home', () => {
       },
       userPreference: {
         ...initialState.userPreference,
-        filterOptions: { query: 'United States' }
-      }
-    }
+        filterOptions: { query: 'United States' },
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
-    
-    expect(screen.getByText('American Bobtail')).toBeVisible()
-  })
+    renderWithProviders(<Home />, { preloadedState });
+
+    expect(screen.getByText('American Bobtail')).toBeVisible();
+  });
 
   test('should sort and filter data by LIFE SPAN', async () => {
     const preloadedState = {
@@ -147,14 +156,14 @@ describe('Home', () => {
       },
       userPreference: {
         ...initialState.userPreference,
-        filterOptions: { query: '11' }
-      }
-    }
+        filterOptions: { query: '11' },
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    expect(screen.getByText('American Bobtail')).toBeVisible()
-  })
+    expect(screen.getByText('American Bobtail')).toBeVisible();
+  });
 
   test('should sort and filter data by IMPERIAL WEIGHT', async () => {
     const preloadedState = {
@@ -165,14 +174,14 @@ describe('Home', () => {
       },
       userPreference: {
         ...initialState.userPreference,
-        filterOptions: { query: '7' }
-      }
-    }
+        filterOptions: { query: '7' },
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    expect(screen.getByText('American Bobtail')).toBeVisible()
-  })
+    expect(screen.getByText('American Bobtail')).toBeVisible();
+  });
 
   test('should filter all favorites', async () => {
     const preloadedState = {
@@ -184,32 +193,31 @@ describe('Home', () => {
       },
       userPreference: {
         ...initialState.userPreference,
-        filterOptions: { isFavourite: true }
-      }
-    }
+        filterOptions: { isFavourite: true },
+      },
+    };
 
-    renderWithProviders(<Home />, { preloadedState })
+    renderWithProviders(<Home />, { preloadedState });
 
-    expect(screen.getByText('Abyssinian')).toBeVisible()
-  })
+    expect(screen.getByText('Abyssinian')).toBeVisible();
+  });
 
   test('should fetch cat and favorite data', async () => {
-    jest.useFakeTimers()
+    jest.useFakeTimers();
 
-    const apiSpy = jest.spyOn(thecatapi, 'getBreeds')
+    const apiSpy = jest
+      .spyOn(thecatapi, 'getBreeds')
       // @ts-ignore
       .mockResolvedValue({
-          data: breeds
-      })
+        data: breeds,
+      });
 
-    renderWithProviders(<Home />, { preloadedState: initialState })
+    renderWithProviders(<Home />, { preloadedState: initialState });
 
-    jest.runAllTimers()
+    jest.runAllTimers();
 
-    await waitFor(() => expect(screen.getByText('Abyssinian')).toBeVisible())
+    await waitFor(() => expect(screen.getByText('Abyssinian')).toBeVisible());
 
-    apiSpy.mockRestore()
-  })
-
-})
-
+    apiSpy.mockRestore();
+  });
+});

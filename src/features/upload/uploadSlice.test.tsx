@@ -1,183 +1,219 @@
-import reducer, { initialState, cleanErrors, postImage, deleteImage, selectUploadedError, selectUploadedStatus, selectUploadedImages } from './uploadSlice'
-import MOCK_BREEDS from '../../__tests__/MOCK_BREEDS.json'
-import MOCK_FAVOURITE_RESPONSE from '../../__tests__/MOCK_FAVOURITE_RESPONSE.json'
-import { setupStore } from '../../app/store'
-import { cleanup } from "@testing-library/react";
-import * as thecatapi from '../../services/thecatapi'
+import reducer, {
+  initialState,
+  cleanErrors,
+  postImage,
+  deleteImage,
+  selectUploadedError,
+  selectUploadedStatus,
+  selectUploadedImages,
+} from './uploadSlice';
+import MOCK_BREEDS from '../../__tests__/MOCK_BREEDS.json';
+import MOCK_FAVOURITE_RESPONSE from '../../__tests__/MOCK_FAVOURITE_RESPONSE.json';
+import { setupStore } from '../../app/store';
+import { cleanup } from '@testing-library/react';
+import * as thecatapi from '../../services/thecatapi';
 
 describe('upload reducer', () => {
-    afterEach(() => cleanup());
+  afterEach(() => cleanup());
 
-    it('should return the initial state', () => {
-        expect(reducer(undefined, { type: undefined })).toEqual(initialState)
-    })
+  it('should return the initial state', () => {
+    expect(reducer(undefined, { type: undefined })).toEqual(initialState);
+  });
 
-    it('should handle clean errors action', () => {
-        expect(reducer({ ...initialState, error: 'Something wrong' }, cleanErrors())).toEqual({ ...initialState, error: '' })
-    })
+  it('should handle clean errors action', () => {
+    expect(
+      reducer({ ...initialState, error: 'Something wrong' }, cleanErrors())
+    ).toEqual({ ...initialState, error: '' });
+  });
 
-    describe('createAsyncThunk', () => {
-        it('postImage', async () => {
-            const { image } = MOCK_BREEDS[0]
-            const file = new File(["foo"], "cat.txt", {
-                type: "text/plain",
-            });
+  describe('createAsyncThunk', () => {
+    it('postImage', async () => {
+      const { image } = MOCK_BREEDS[0];
+      const file = new File(['foo'], 'cat.txt', {
+        type: 'text/plain',
+      });
 
-            const apiSpy = jest.spyOn(thecatapi, 'postUploadImage')
-                // @ts-ignore
-                .mockResolvedValue({
-                    data: MOCK_FAVOURITE_RESPONSE
-                })
-
-            const store = setupStore()
-            await store.dispatch(postImage({ file, image }));
-
-            expect(apiSpy).toHaveBeenCalledTimes(1)
-            expect(apiSpy).toHaveBeenCalledWith(file)
-
-            apiSpy.mockRestore()
+      const apiSpy = jest
+        .spyOn(thecatapi, 'postUploadImage')
+        // @ts-ignore
+        .mockResolvedValue({
+          data: MOCK_FAVOURITE_RESPONSE,
         });
 
-        it('postImage rejected', async () => {
-            const { image } = MOCK_BREEDS[0]
-            const file = new File(["foo"], "dog.txt", {
-                type: "text/plain",
-            });
+      const store = setupStore();
+      await store.dispatch(postImage({ file, image }));
 
-            const apiSpy = jest.spyOn(thecatapi, 'postUploadImage')
-                // @ts-ignore
-                .mockRejectedValue({
-                    response: {
-                        data: 'Something went wrong'
-                    }
-                })
+      expect(apiSpy).toHaveBeenCalledTimes(1);
+      expect(apiSpy).toHaveBeenCalledWith(file);
 
-            const store = setupStore()
-            await store.dispatch(postImage({ file, image }));
+      apiSpy.mockRestore();
+    });
 
-            expect(apiSpy).toHaveBeenCalledTimes(1)
-            expect(apiSpy).toHaveBeenCalledWith(file)
+    it('postImage rejected', async () => {
+      const { image } = MOCK_BREEDS[0];
+      const file = new File(['foo'], 'dog.txt', {
+        type: 'text/plain',
+      });
 
-            apiSpy.mockRestore()
+      const apiSpy = jest
+        .spyOn(thecatapi, 'postUploadImage')
+        // @ts-ignore
+        .mockRejectedValue({
+          response: {
+            data: 'Something went wrong',
+          },
         });
 
-        it('deleteImage', async () => {
-            const imgId = 'z0hz6WtA2'
-            const apiSpy = jest.spyOn(thecatapi, 'deleteUploadImage')
-                // @ts-ignore
-                .mockResolvedValue()
+      const store = setupStore();
+      await store.dispatch(postImage({ file, image }));
 
-            const store = setupStore()
-            await store.dispatch(deleteImage(imgId));
+      expect(apiSpy).toHaveBeenCalledTimes(1);
+      expect(apiSpy).toHaveBeenCalledWith(file);
 
-            expect(apiSpy).toHaveBeenCalledTimes(1)
-            expect(apiSpy).toHaveBeenCalledWith(imgId)
+      apiSpy.mockRestore();
+    });
 
-            apiSpy.mockRestore()
-        });
-    })
+    it('deleteImage', async () => {
+      const imgId = 'z0hz6WtA2';
+      const apiSpy = jest
+        .spyOn(thecatapi, 'deleteUploadImage')
+        // @ts-ignore
+        .mockResolvedValue();
 
-    describe('Image', () => {
-        it('should set status to loaing when postImage is pending', () => {
-            const action = { type: postImage.pending.type };
-            const state = reducer(initialState, action);
-            expect(state).toEqual({ ...initialState, status: 'loading', error: '' });
-        });
+      const store = setupStore();
+      await store.dispatch(deleteImage(imgId));
 
-        it('should set images data when postImage is fulfilled', () => {
-            const action = { type: postImage.fulfilled.type, payload: MOCK_FAVOURITE_RESPONSE };
-            const state = reducer(initialState, action);
-            expect(state).toEqual({ ...initialState, images: [MOCK_FAVOURITE_RESPONSE] });
-        });
+      expect(apiSpy).toHaveBeenCalledTimes(1);
+      expect(apiSpy).toHaveBeenCalledWith(imgId);
 
-        it('should overwrite image data when there is a previous upload for the current image', () => {
-            const storedImage = {
-                ...MOCK_FAVOURITE_RESPONSE,
-                id: 'one',
-                originalImage: {
-                    id: 'z0hz6WtA2',
-                    url:'any'
-                }
-            }
-            const newUploadImage = {
-                ...MOCK_FAVOURITE_RESPONSE,
-                id: 'two',
-                originalImage: {
-                    id: 'z0hz6WtA2',
-                    url:'any'
-                }
-            }
-            const action = { type: postImage.fulfilled.type, payload: newUploadImage };
-            const state = reducer({ ...initialState, images: [storedImage] }, action);
-            expect(state).toEqual({ ...initialState, images: [newUploadImage] });
-        });
+      apiSpy.mockRestore();
+    });
+  });
 
-        it('sets status false when postImage is rejected', () => {
-            const action = { type: postImage.rejected.type, payload: 'Something went wrong' };
-            const state = reducer(initialState, action);
-            expect(state).toEqual({ ...initialState, status: 'failed', error: 'Something went wrong' });
-        });
+  describe('Image', () => {
+    it('should set status to loaing when postImage is pending', () => {
+      const action = { type: postImage.pending.type };
+      const state = reducer(initialState, action);
+      expect(state).toEqual({ ...initialState, status: 'loading', error: '' });
+    });
 
-        it('should set status to loaing when deleteImage is pending', () => {
-            const action = { type: deleteImage.pending.type };
-            const state = reducer(initialState, action);
-            expect(state).toEqual({ ...initialState, status: 'loading' });
-        });
+    it('should set images data when postImage is fulfilled', () => {
+      const action = {
+        type: postImage.fulfilled.type,
+        payload: MOCK_FAVOURITE_RESPONSE,
+      };
+      const state = reducer(initialState, action);
+      expect(state).toEqual({
+        ...initialState,
+        images: [MOCK_FAVOURITE_RESPONSE],
+      });
+    });
 
-        it('should remove image data when deleteImage is fulfilled', () => {
-            const storedImage = {
-                ...MOCK_FAVOURITE_RESPONSE,
-                originalImage: {
-                    id: 'z0hz6WtA2',
-                    url:'any'
-                }
-            }
-            const action = { type: deleteImage.fulfilled.type, payload: storedImage.id };
-            const state = reducer({ ...initialState, images: [storedImage]}, action);
-            expect(state).toEqual({ ...initialState, images: [] });
-        });
-    })
+    it('should overwrite image data when there is a previous upload for the current image', () => {
+      const storedImage = {
+        ...MOCK_FAVOURITE_RESPONSE,
+        id: 'one',
+        originalImage: {
+          id: 'z0hz6WtA2',
+          url: 'any',
+        },
+      };
+      const newUploadImage = {
+        ...MOCK_FAVOURITE_RESPONSE,
+        id: 'two',
+        originalImage: {
+          id: 'z0hz6WtA2',
+          url: 'any',
+        },
+      };
+      const action = {
+        type: postImage.fulfilled.type,
+        payload: newUploadImage,
+      };
+      const state = reducer({ ...initialState, images: [storedImage] }, action);
+      expect(state).toEqual({ ...initialState, images: [newUploadImage] });
+    });
 
-    describe('Selectors', () => {
-        it('should selectUploadedImages', () => {
-            const images = [{
-                ...MOCK_FAVOURITE_RESPONSE,
-                originalImage: {
-                    id: 'z0hz6WtA2',
-                    url:'any'
-                }
-            }]
+    it('sets status false when postImage is rejected', () => {
+      const action = {
+        type: postImage.rejected.type,
+        payload: 'Something went wrong',
+      };
+      const state = reducer(initialState, action);
+      expect(state).toEqual({
+        ...initialState,
+        status: 'failed',
+        error: 'Something went wrong',
+      });
+    });
 
-            const store = setupStore({
-                upload: {
-                    ...initialState,
-                    images
-                }
-            })
+    it('should set status to loaing when deleteImage is pending', () => {
+      const action = { type: deleteImage.pending.type };
+      const state = reducer(initialState, action);
+      expect(state).toEqual({ ...initialState, status: 'loading' });
+    });
 
-            expect(selectUploadedImages(store.getState())).toEqual(images)
-        });
+    it('should remove image data when deleteImage is fulfilled', () => {
+      const storedImage = {
+        ...MOCK_FAVOURITE_RESPONSE,
+        originalImage: {
+          id: 'z0hz6WtA2',
+          url: 'any',
+        },
+      };
+      const action = {
+        type: deleteImage.fulfilled.type,
+        payload: storedImage.id,
+      };
+      const state = reducer({ ...initialState, images: [storedImage] }, action);
+      expect(state).toEqual({ ...initialState, images: [] });
+    });
+  });
 
-        it('should selectUploadedStatus', () => {
-            const store = setupStore({
-                upload: {
-                    ...initialState,
-                    status: 'loading'
-                }
-            })
+  describe('Selectors', () => {
+    it('should selectUploadedImages', () => {
+      const images = [
+        {
+          ...MOCK_FAVOURITE_RESPONSE,
+          originalImage: {
+            id: 'z0hz6WtA2',
+            url: 'any',
+          },
+        },
+      ];
 
-            expect(selectUploadedStatus(store.getState())).toBe('loading')
-        });
+      const store = setupStore({
+        upload: {
+          ...initialState,
+          images,
+        },
+      });
 
-        it('should selectUploadedError', () => {
-            const store = setupStore({
-                upload: {
-                    ...initialState,
-                    error: 'something went wrong'
-                }
-            })
+      expect(selectUploadedImages(store.getState())).toEqual(images);
+    });
 
-            expect(selectUploadedError(store.getState())).toBe('something went wrong')
-        });
-    })
-})
+    it('should selectUploadedStatus', () => {
+      const store = setupStore({
+        upload: {
+          ...initialState,
+          status: 'loading',
+        },
+      });
+
+      expect(selectUploadedStatus(store.getState())).toBe('loading');
+    });
+
+    it('should selectUploadedError', () => {
+      const store = setupStore({
+        upload: {
+          ...initialState,
+          error: 'something went wrong',
+        },
+      });
+
+      expect(selectUploadedError(store.getState())).toBe(
+        'something went wrong'
+      );
+    });
+  });
+});
