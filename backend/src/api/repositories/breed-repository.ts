@@ -4,9 +4,6 @@ import { BreedModel } from "../core/models/breed-model";
 import { redisHelper } from "../helpers/redis-helper";
 
 export class BreedRepository implements BreedRepositoryInterface {
-    // @todo: fazer a parte do /brands/id agora... fazer mais uns testes no cache do redis
-    // tenta fazer a pipeline do github funcionar logo tb
-    // ver essa parada aqui tb https://github.com/princevasconcelos/movies-node/blob/master/server/bin/www.js
     async load(randomize: boolean, limit?: number) {
         console.log('BreedRepository.load')
         let breeds = await this.fetchBreeds()
